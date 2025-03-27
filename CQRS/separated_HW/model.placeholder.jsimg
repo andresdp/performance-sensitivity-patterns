@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<archive xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="model.placeholder.jsimg" timestamp="Fri Sep 23 09:47:09 CEST 2022" xsi:noNamespaceSchemaLocation="Archive.xsd">
+    <sim disableStatisticStop="false" logDecimalSeparator="." logDelimiter="," logPath="/home/riccardo/JMT/" logReplaceMode="0" maxEvents="-1" maxSamples="1000000" name="model.placeholder.jsimg" polling="1.0" xsi:noNamespaceSchemaLocation="SIMmodeldefinition.xsd">
+        <userClass customers="VAL000" name="read" priority="0" referenceSource="Delay 1" type="closed"/>
+        <userClass customers="VAL001" name="write" priority="0" referenceSource="Delay 1" type="closed"/>
+        <userClass customers="0" name="messages" priority="0" referenceSource="Delay 1" type="closed"/>
+        <node name="Delay 1">
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="retrialDistributions">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Delay">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServerStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>VAL002</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>VAL003</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.DisabledServiceTimeStrategy" name="DisabledServiceTimeStrategy"/>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>DB_read</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>DB_write</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>DB_read</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.0</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>DB_write</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                </parameter>
+            </section>
+        </node>
+        <node name="DB_read">
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="retrialDistributions">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Server">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>VAL004</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServerStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>VAL005</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.DisabledServiceTimeStrategy" name="DisabledServiceTimeStrategy"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.DisabledServiceTimeStrategy" name="DisabledServiceTimeStrategy"/>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                </parameter>
+            </section>
+        </node>
+        <node name="DB_write">
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="retrialDistributions">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>0.5</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ImpatienceStrategies.Impatience" name="Impatience">
+                        <value>null</value>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Server">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>VAL006</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServerStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.DisabledServiceTimeStrategy" name="DisabledServiceTimeStrategy"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>VAL007</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.DisabledServiceTimeStrategy" name="DisabledServiceTimeStrategy"/>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                </parameter>
+            </section>
+        </node>
+        <node name="writing">
+            <section className="Storage">
+                <parameter classPath="java.lang.Integer" name="totalCapacity">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="capacities">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropRules">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="getStrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="putStrategies">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                </parameter>
+            </section>
+            <section className="ServiceTunnel"/>
+            <section className="Linkage"/>
+        </node>
+        <node name="read_complete">
+            <section className="Enabling">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="enablingConditions">
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="enablingCondition">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>canRead?</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="enablingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>1</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>publish</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="enablingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="enablingCondition">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>canRead?</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="enablingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>publish</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="enablingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>1</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="inhibitingConditions">
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="inhibitingCondition">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>canRead?</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="inhibitingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>publish</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="inhibitingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>1</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="inhibitingCondition">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>canRead?</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="inhibitingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>publish</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="inhibitingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Timing">
+                <parameter array="true" classPath="java.lang.String" name="modeNames">
+                    <subParameter classPath="java.lang.String" name="modeName">
+                        <value>freeToRead</value>
+                    </subParameter>
+                    <subParameter classPath="java.lang.String" name="modeName">
+                        <value>publishWrite</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numbersOfServers">
+                    <subParameter classPath="java.lang.Integer" name="numberOfServers">
+                        <value>-1</value>
+                    </subParameter>
+                    <subParameter classPath="java.lang.Integer" name="numberOfServers">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="timingStrategies">
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ZeroServiceTimeStrategy" name="timingStrategy"/>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="timingStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>VAL007</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="firingPriorities">
+                    <subParameter classPath="java.lang.Integer" name="firingPriority">
+                        <value>0</value>
+                    </subParameter>
+                    <subParameter classPath="java.lang.Integer" name="firingPriority">
+                        <value>-1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Double" name="firingWeights">
+                    <subParameter classPath="java.lang.Double" name="firingWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                    <subParameter classPath="java.lang.Double" name="firingWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Firing">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="firingOutcomes">
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="firingOutcome">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="firingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="firingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Delay 1</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="firingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>1</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="firingOutcome">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="firingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="firingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Delay 1</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="firingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="canRead?">
+            <section className="Storage">
+                <parameter classPath="java.lang.Integer" name="totalCapacity">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="capacities">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropRules">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="getStrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="putStrategies">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                </parameter>
+            </section>
+            <section className="ServiceTunnel"/>
+            <section className="Linkage"/>
+        </node>
+        <node name="write_complete">
+            <section className="Enabling">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="enablingConditions">
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="enablingCondition">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="enablingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>writing</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="enablingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>1</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="enablingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="inhibitingConditions">
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="inhibitingCondition">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="inhibitingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>writing</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="inhibitingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="inhibitingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Timing">
+                <parameter array="true" classPath="java.lang.String" name="modeNames">
+                    <subParameter classPath="java.lang.String" name="modeName">
+                        <value>Mode1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numbersOfServers">
+                    <subParameter classPath="java.lang.Integer" name="numberOfServers">
+                        <value>-1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="timingStrategies">
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ZeroServiceTimeStrategy" name="timingStrategy"/>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="firingPriorities">
+                    <subParameter classPath="java.lang.Integer" name="firingPriority">
+                        <value>0</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Double" name="firingWeights">
+                    <subParameter classPath="java.lang.Double" name="firingWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                </parameter>
+            </section>
+            <section className="Firing">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="firingOutcomes">
+                    <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionMatrix" name="firingOutcome">
+                        <subParameter array="true" classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="firingVectors">
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="firingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Delay 1</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="firingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>1</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.NetStrategies.TransitionUtilities.TransitionVector" name="firingVector">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>publish</value>
+                                </subParameter>
+                                <subParameter array="true" classPath="java.lang.Integer" name="firingEntries">
+                                    <refClass>read</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>write</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>0</value>
+                                    </subParameter>
+                                    <refClass>messages</refClass>
+                                    <subParameter classPath="java.lang.Integer" name="firingEntry">
+                                        <value>1</value>
+                                    </subParameter>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="publish">
+            <section className="Storage">
+                <parameter classPath="java.lang.Integer" name="totalCapacity">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="capacities">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.Integer" name="capacity">
+                        <value>-1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropRules">
+                    <refClass>read</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>write</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="java.lang.String" name="dropRule">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="getStrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="putStrategies">
+                    <refClass>read</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                    <refClass>write</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                    <refClass>messages</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="putStrategy"/>
+                </parameter>
+            </section>
+            <section className="ServiceTunnel"/>
+            <section className="Linkage"/>
+        </node>
+        <measure alpha="0.01" name="System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="read_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="read" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="write_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="write" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="System Throughput" nodeType="" precision="0.03" referenceNode="" referenceUserClass="" type="System Throughput" verbose="false"/>
+        <measure alpha="0.01" name="read_System Throughput" nodeType="" precision="0.03" referenceNode="" referenceUserClass="read" type="System Throughput" verbose="false"/>
+        <measure alpha="0.01" name="write_System Throughput" nodeType="" precision="0.03" referenceNode="" referenceUserClass="write" type="System Throughput" verbose="false"/>
+        <measure alpha="0.01" name="DB_read_Utilization" nodeType="station" precision="0.03" referenceNode="DB_read" referenceUserClass="" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="DB_write_Utilization" nodeType="station" precision="0.03" referenceNode="DB_write" referenceUserClass="" type="Utilization" verbose="false"/>
+        <connection source="Delay 1" target="DB_read"/>
+        <connection source="Delay 1" target="DB_write"/>
+        <connection source="DB_read" target="canRead?"/>
+        <connection source="DB_write" target="writing"/>
+        <connection source="writing" target="write_complete"/>
+        <connection source="read_complete" target="Delay 1"/>
+        <connection source="canRead?" target="read_complete"/>
+        <connection source="write_complete" target="Delay 1"/>
+        <connection source="write_complete" target="publish"/>
+        <connection source="publish" target="read_complete"/>
+        <preload>
+            <stationPopulations stationName="Delay 1">
+                <classPopulation population="VAL000" refClass="read"/>
+                <classPopulation population="VAL001" refClass="write"/>
+            </stationPopulations>
+        </preload>
+    </sim>
+    <jmodel xsi:noNamespaceSchemaLocation="JModelGUI.xsd">
+        <userClass color="#FF0000FF" name="read"/>
+        <userClass color="#FFFF0000" name="write"/>
+        <userClass color="#FF00FF00" name="messages"/>
+        <station name="Delay 1">
+            <position angle="0.0" rotate="false" x="286.0" y="291.0"/>
+        </station>
+        <station name="DB_read">
+            <position angle="0.0" rotate="false" x="489.0" y="227.0"/>
+        </station>
+        <station name="DB_write">
+            <position angle="0.0" rotate="false" x="488.0" y="420.0"/>
+        </station>
+        <station name="writing">
+            <position angle="0.0" rotate="false" x="643.0" y="423.0"/>
+        </station>
+        <station name="read_complete">
+            <position angle="0.0" rotate="false" x="962.0" y="230.0"/>
+        </station>
+        <station name="canRead?">
+            <position angle="0.0" rotate="false" x="649.0" y="230.0"/>
+        </station>
+        <station name="write_complete">
+            <position angle="0.0" rotate="false" x="740.0" y="423.0"/>
+        </station>
+        <station name="publish">
+            <position angle="0.0" rotate="false" x="882.0" y="423.0"/>
+        </station>
+    </jmodel>
+</archive>
