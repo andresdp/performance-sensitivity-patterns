@@ -16,6 +16,6 @@ The CART algorithm is adapted from the [Scikit-learn](https://scikit-learn.org/s
 
 ## Usage
 The analysis of each pattern, along with the necessary notebooks anda data, is located in the corresponding folder.
-The main Jupyter notebook for a running a given pattern analysis is called *robustness-paper.ipynb*. This notebook relies on a set of common classes and utility functions defined in the *archspace.py* file.
+The main Jupyter notebook for a running a given pattern analysis is called *sensitivity-analysis.ipynb*. This notebook relies on a set of common classes and utility functions defined in the *archspace.py* file.
 
 The creation of a Python environment (e.g., with Conda) is recommended. A *requirements.txt* file is provided.
