@@ -4,8 +4,8 @@ in Pattern-based Microservices Architectures" submitted to ECSA 2025.
 
 A performance sensitivity analysis is implemented for the following microservices patterns:
 * *Gateway Offloading (GO)*
-* *Anti-corruption Layer (ACL)*
 * *Command Query Responsibility Segreggation (CQRS)*
+* * *Anti-corruption Layer (ACL)*
 
 These patterns are taken from an existing work by [Pinciroli et al.](https://cs.gssi.it/catia.trubiani/download/2023-ICSA-DesignPatterns-Performance.pdf) 
 The authors' original dataset can be accessed [here](https://zenodo.org/records/7524410).
