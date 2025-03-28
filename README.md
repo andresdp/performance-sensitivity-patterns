@@ -19,3 +19,5 @@ The analysis of each pattern, along with the necessary notebooks anda data, is l
 The main Jupyter notebook for a running a given pattern analysis is called *sensitivity-analysis.ipynb*. This notebook relies on a set of common classes and utility functions defined in the *archspace.py* file.
 
 The creation of a Python environment (e.g., with Conda) is recommended. A *requirements.txt* file is provided.
+
+Tables with the raw results reported in the paper are in *experimental-results.xlsx*.
