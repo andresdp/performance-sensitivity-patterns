@@ -20,4 +20,4 @@ The main Jupyter notebook for a running a given pattern analysis is called *sens
 
 The creation of a Python environment (e.g., with Conda) is recommended. A *requirements.txt* file is provided.
 
-Tables with the raw results reported in the paper are in *experimental-results.xlsx*.
+Tables with the experimental results reported in the paper, including the parameter constraints for each case, are in [*experimental-results.xlsx*](https://github.com/andresdp/performance-sensitivity-patterns/raw/refs/heads/main/experimental-results.xlsx).
